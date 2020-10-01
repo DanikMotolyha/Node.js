@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+<title>
+    name
+</title>
+</head>
+<body>
+    <h1>TESTING</h1>
+    <span id="output"></span>
+    <script type="text/javascript">
+    const request = new XMLHttpRequest();
+    const url = 'http://localhost:5000/api/name';
+    request.open('GET', url, true);
+    request.addEventListener("readystatechange", () => {
+	    if (request.readyState === 4 && request.status === 200) {
+            document.getElementById('output').innerHTML = request.responseText;
+        }
+    });
+    request.send();
+    </script>
+</body>
+

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>06</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="resultDB"></div>
+        <div>
+            <div class="row">
+                <label class="col-2">отправитель</label>
+                <input type="text" class="col-3" id = "sender" min="0"/>
+            </div>
+            <div class="row">
+                <label class="col-2">получатель</label>
+                <input type="text" class="col-3" id = "reciever" min="0"/>
+            </div>
+            <div class="row">
+                <label class="col-2">сообщение</label>
+                <input type="text" class="col-3" id = "msg" min="0"/>
+            </div>
+        </div>
+        <button onclick="Post()"> POST </button>
+    </body>
+    <script>
+        function Post(){
+            fetch('http://localhost:5000/', {
+                method: 'POST', mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify({sender: sender.value, reciever: reciever.value, msg:msg.value})
+            })
+        }
+    </script>
+</html>

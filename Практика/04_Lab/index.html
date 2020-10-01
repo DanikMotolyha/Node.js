@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>04</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="resultDB"></div>
+        <div>
+            <div class="row">
+                <label class="col-2">Id</label>
+                <input type="number" class="col-3" id = "ID" min="0"/>
+            </div>
+            <div class="row">
+                <label class="col-2">FIO</label>
+                <input type="text" class="col-3" id = "Name" min="0"/>
+            </div>
+            <div class="row">
+                <label class="col-2">BDay</label>
+                <input type="date" class="col-3" id = "BDay" min="2000-01-01"/>
+            </div>
+        </div>
+        <button onclick="Get()"> GET </button>
+        <button onclick="Post()"> POST </button>
+        <div class="row">
+            <label class="col-2">Id</label>
+            <input type="number" class="col-3" id = "IDPut" min="0"/>
+        </div>
+        <div class="row">
+            <label class="col-2">FIO</label>
+            <input type="text" class="col-3" id = "NamePut" min="0"/>
+        </div>
+        <div class="row">
+            <label class="col-2">BDay</label>
+            <input type="date" class="col-3" id = "BDayPut" min="2000-01-01"/>
+        </div>
+        <button onclick="Put()"> PUT </button>
+        <div class="row">
+            <label class="col-2">Id</label>
+            <input type="int" class="col-3" id = "IDDelete" min="0"/>
+        </div>
+        <button onclick="Delete()"> DELETE </button>
+    </body>
+    <script>
+        function Get(){
+            fetch('http://localhost:5000/api/db', {
+                method: 'GET', mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+            })
+            .then(response  => { return response.json();})
+            .then(pdata    => {
+                resultDB.innerHTML = '';
+                pdata.forEach(user => { 
+                    resultDB.innerHTML += (user.id + '. ' + user.name + ' ' + user.bday + '<br/>');
+                });
+            });
+        }
+        function Post(){
+            fetch('http://localhost:5000/api/db', {
+                method: 'POST', mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify({id: ID.value, name: Name.value, bday:BDay.value})
+            })
+        }
+        function Put(){
+            fetch('http://localhost:5000/api/db', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify({id: IDPut.value, name: NamePut.value, bday:BDayPut.value})
+            })
+        }
+        function Delete(){
+            fetch('http://localhost:5000/api/db', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify({id: IDDelete.value})
+            })
+        }
+    </script>
+</html>

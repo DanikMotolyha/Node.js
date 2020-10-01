@@ -1,0 +1,5 @@
+npm view sendmail
+npm install sendmail
+
+C:\Users\danik\AppData\Roaming\npm\node_modules
+публикация -- npm init, npm publish

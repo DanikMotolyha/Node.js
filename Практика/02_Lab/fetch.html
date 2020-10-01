@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+<title>
+    name
+</title>
+</head>
+<body>
+    <h1>TESTING2</h1>
+    <span id="output"></span>
+    <script type="text/javascript">
+    fetch('api/name')
+        .then(
+            function(response){
+                if(response.status != 200)
+                    document.getElementById('output').innerHTML = 'error';
+                
+                response.text().then(function(data){
+                    document.getElementById('output').innerHTML = data;
+                });
+                }
+        );
+    </script>
+</body>
+
