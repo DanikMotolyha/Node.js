@@ -16,6 +16,6 @@ let http_handler = (req, res)=> {
 }
 let serv = http.createServer();
 
-serv.listen(4000, (v)=>{console.log('listen 3000')})
+serv.listen(4000, (v)=>{console.log('listen 4000')})
     .on('error', (err)=>{console.log('error', err.code);})
     .on('request', http_handler);

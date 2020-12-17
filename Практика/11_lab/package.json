@@ -1,0 +1,16 @@
+{
+  "name": "lr_11_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "11-01.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.0",
+    "rpc-websockets": "^7.4.6",
+    "ws": "^7.3.1"
+  }
+}
