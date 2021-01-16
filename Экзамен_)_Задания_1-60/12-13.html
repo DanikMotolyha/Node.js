@@ -1,0 +1,42 @@
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <button onclick="getInfoFetch()">start</button><br/>
+   <button onclick="getInfoXMLHTTP()">startXMLHTTP</button><br/>
+
+   <span id="output"></span><br/>
+   <span id="output2"></span>
+   <script>
+      async function getInfoFetch(){
+        fetch('http://localhost:3000/info',{
+                    method: 'GET', mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+                })
+                .then(response => { return response.json(); })
+                .then(jso => {
+                    output.innerHTML = `url: ${jso.url}, iter: ${jso.iter}`;
+                });
+        }
+        function getInfoXMLHTTP(){
+           let req = new XMLHttpRequest();
+                 req.open('GET', 'http://localhost:3000/info', true);
+                 req.onreadystatechange = () => {
+                     if (req.readyState === 4) {
+                         if (req.status === 200) {
+                            let jso = JSON.parse(req.responseText);
+                            output2.innerHTML = `url: ${jso.url}, iter: ${jso.iter}`;
+                         } 
+                         else {
+                            console.log(req.statusCode);
+                         }
+                     }
+                 };
+           req.send();
+        }
+   </script>
+</body>
+</html>

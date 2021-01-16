@@ -1,0 +1,24 @@
+type Student
+{
+    IdStudent: Int!
+    Name: String!
+    Sername: String!
+    Mark: Int!
+}
+input NewStudent
+{
+    IdStudent: Int!
+    Name: String!
+    Sername: String!
+    Mark: Int!
+}
+type Query
+{
+    getStudent(Student: Int): [Student]
+}
+type Mutation
+{
+    setStudent(student: NewStudent!): Student
+
+    delStudent(id: Int!): Student
+}
